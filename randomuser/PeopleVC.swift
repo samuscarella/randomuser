@@ -69,9 +69,7 @@ class PeopleVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         let url = URL(string: "https://randomuser.me/api/?results=100")!
         Alamofire.request(url).responseJSON { res in
-            
-            print(res)
-            
+                        
             guard let response = res.value as? NSDictionary else {
                 //if time throw error and handle
                 return

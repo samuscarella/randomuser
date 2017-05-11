@@ -8,8 +8,9 @@
 
 import UIKit
 import Alamofire
+import MapKit
 
-class DetailVC: UIViewController {
+class DetailVC: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var genderImageView: UIImageView!
@@ -19,6 +20,11 @@ class DetailVC: UIViewController {
     @IBOutlet weak var genderView: UIView!
     @IBOutlet weak var countryView: UIView!
     @IBOutlet weak var nameView: UIView!
+    @IBOutlet weak var phoneView: UIView!
+    @IBOutlet weak var phoneLbl: UILabel!
+    @IBOutlet weak var mapView: MKMapView!
+    
+    let geocoder = CLGeocoder()
     
     var person: Person!
     
@@ -26,9 +32,12 @@ class DetailVC: UIViewController {
         super.viewDidLoad()
         
         navigationItem.titleView = LogoView()
+
+        mapView.delegate = self
+        
         updateUI()
     }
-    
+
     func updateUI() {
         
         if let firstName = person.firstName, let lastName = person.lastName {
@@ -56,10 +65,35 @@ class DetailVC: UIViewController {
             flagImageView.image = UIImage(named: flag)
         }
         
+        if let phone = person.phone {
+            phoneLbl.text = phone
+        }
+        
         if person.gender == "male" {
             genderImageView.image = UIImage(named: "male")
         } else if person.gender == "female" {
             genderImageView.image = UIImage(named: "female")
+        }
+        
+        if let street = person.street, let city = person.city, let country = person.country {
+            
+            let fullAddress = country + ", " + city + ", " + street
+            print(fullAddress)
+            geocoder.geocodeAddressString(fullAddress) { placemarks, error in
+                
+                if let placemark = placemarks?[0] {
+                    
+                    if let pmCircularRegion = placemark.region as? CLCircularRegion {
+                        
+                        let metersAcross = pmCircularRegion.radius * 2
+                        let region = MKCoordinateRegionMakeWithDistance(pmCircularRegion.center, metersAcross, metersAcross)
+                        let adjustedRegion = self.mapView.regionThatFits(region)
+                        
+                        self.mapView.setRegion(adjustedRegion, animated: true)
+                        self.mapView.showsUserLocation = true
+                    }
+                }
+            }
         }
         setCustomUIProperties()
     }
@@ -69,19 +103,19 @@ class DetailVC: UIViewController {
         nameView.dropShadow()
         countryView.dropShadow()
         genderView.dropShadow()
+        phoneView.dropShadow()
 
-        avatarImageView.layer.cornerRadius = avatarImageView.frame.size.height / 2
-        avatarImageView.layer.masksToBounds = true
-        avatarImageView.clipsToBounds = true
-        
+//        avatarImageView.layer.cornerRadius = avatarImageView.frame.size.height / 2
+//        avatarImageView.layer.masksToBounds = true
+//        avatarImageView.clipsToBounds = true
         
         //subclass this
         containerView.backgroundColor = UIColor.clear
         containerView.layer.shadowColor = UIColor.black.cgColor
-        containerView.layer.shadowOffset = CGSize(width: 0, height: 3)
+        containerView.layer.shadowOffset = CGSize(width: 0, height: 6)
         containerView.layer.shadowOpacity = 0.4
         containerView.layer.shadowRadius = 5
-        containerView.layer.shadowPath = UIBezierPath(roundedRect: containerView.bounds, cornerRadius: 100.0).cgPath
+        containerView.layer.shadowPath = UIBezierPath(roundedRect: avatarImageView.bounds, cornerRadius: 0.0).cgPath
     }
 }
 

@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import Alamofire
 @testable import randomuser
 
 class randomuserTests: XCTestCase {
@@ -22,8 +23,13 @@ class randomuserTests: XCTestCase {
     }
     
     func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        let url = URL(string: "https://randomuser.me/api/?results=100")!
+        Alamofire.request(url).responseJSON { res in
+            
+            let people = response.value(forKey: "results") as? [[String:Any]]
+            assert(people.count == 100)
+        }
     }
     
     func testPerformanceExample() {
