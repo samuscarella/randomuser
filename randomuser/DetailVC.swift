@@ -104,18 +104,6 @@ class DetailVC: UIViewController, MKMapViewDelegate {
         countryView.dropShadow()
         genderView.dropShadow()
         phoneView.dropShadow()
-
-//        avatarImageView.layer.cornerRadius = avatarImageView.frame.size.height / 2
-//        avatarImageView.layer.masksToBounds = true
-//        avatarImageView.clipsToBounds = true
-        
-        //subclass this
-        containerView.backgroundColor = UIColor.clear
-        containerView.layer.shadowColor = UIColor.black.cgColor
-        containerView.layer.shadowOffset = CGSize(width: 0, height: 6)
-        containerView.layer.shadowOpacity = 0.4
-        containerView.layer.shadowRadius = 5
-        containerView.layer.shadowPath = UIBezierPath(roundedRect: avatarImageView.bounds, cornerRadius: 0.0).cgPath
     }
 }
 

@@ -197,7 +197,7 @@
                                     <constraint firstItem="1HJ-ct-pUg" firstAttribute="centerX" secondItem="Psg-X4-VVe" secondAttribute="centerX" id="dPW-mW-z9z"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xmW-EO-hn4">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xmW-EO-hn4" customClass="DetailLayerView" customModule="randomuser" customModuleProvider="target">
                                 <rect key="frame" x="115" y="58" width="150" height="150"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ss5-fg-ffj">
@@ -218,7 +218,7 @@
                                 <rect key="frame" x="10" y="276" width="360" height="40"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="3Qp-4c-0eb">
-                                        <rect key="frame" x="-1799831.5" y="10" width="3600023" height="20"/>
+                                        <rect key="frame" x="-4499999831.5" y="10" width="9000000023" height="20"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone" translatesAutoresizingMaskIntoConstraints="NO" id="1Mx-vH-f3V">
                                                 <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
@@ -228,7 +228,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qE6-Qf-tnL">
-                                                <rect key="frame" x="23" y="0.0" width="3600000" height="20"/>
+                                                <rect key="frame" x="23" y="0.0" width="9000000000" height="20"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
